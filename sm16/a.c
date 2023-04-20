@@ -14,12 +14,12 @@ int main() {
     getaddrinfo("hse.ru", "https", &hints, &res);
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
-//    connect(sock, res->ai_addr, res->ai_addrlen);
+//    connect(sock, res->ai_addr, res->ai_addrlen);  /// use socket as Client
     struct sockaddr_in addr = {AF_INET};
     addr.sin_port = htons(8080);
     addr.sin_addr.s_addr = INADDR_ANY;
     printf("%d\n", bind(sock, (void*)&addr, sizeof(addr)));
-    listen(sock, 16);
+    listen(sock, 16);  /// User socket as server
     printf("%d\n", sock);
 
     struct sockaddr_in client_addr;
